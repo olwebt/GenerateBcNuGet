@@ -5,6 +5,9 @@ Write-Host "Generate Runtime NuGet Packages"
 $appsFolder = Join-Path ([System.IO.Path]::GetTempPath()) ([guid]::NewGuid().ToString())
 $apps = @(Copy-AppFilesToFolder -appFiles @("$env:apps".Split(',')) -folder $appsFolder)
 
+Write-Host "Apps: "
+Write-Host $apps
+
 $nuGetServerUrl, $githubRepository = GetNuGetServerUrlAndRepository -nuGetServerUrl $env:nuGetServerUrl
 $nuGetToken = $env:nuGetToken
 $symbolsOnly = ($env:symbolsOnly -eq 'true')
